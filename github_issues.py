@@ -1,6 +1,6 @@
 from github3 import login
 from orgmunge.classes import Heading, Headline, TimeStamp, ORG_TIME_FORMAT, Scheduling
-from orgfetch import Fetcher, Transformer, Updater
+from orgfetcher import Fetcher, Transformer, Updater
 from datetime import datetime as dt
 from typing import Tuple
 import re
