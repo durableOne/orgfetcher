@@ -1,0 +1,29 @@
+#+title:Orgfetch
+* Introduction
+This repo contains three classes that help implement a generic
+interface for fetching data from an external source and using it to
+update an Org file. It relies on [[https://github.com/durableOne/orgmunge][orgmunge]] to do the work of parsing
+and modifying Org files and can leverage all the power of Python to
+fetch external data.
+
+The classes are =Fetcher=, =Transformer=, and =Updater=. =Fetcher= is
+responsible for getting data from an external source. This data is
+then passed to =Transformer= to transform it into =Heading= objects that
+can be used to update an existing Org file. This last part is the job
+of =Updater=: it takes the =Heading= objects and the path to an *existing*
+Org file and figures out how to update it, whether by appending the
+new =Heading= objects or merging them with existing ones in the file.
+
+* Example
+The repo also contains an example file (=github_issues.py=) showing how to inherit from
+these classes to create a system that fetches issues from all your
+github repos and updates an Org file: any new issues that were opened
+get added under a top-level heading named after that repo; any new
+issues that were closed, are marked as done in the file and their
+closed time is set to the time the corresponding issue was closed on
+github.
+In addition, the system also adds the =agenda-group= property to each
+repo's heading and sets it to the dominant language in that repo. This
+helps create a nice grouping of issues when you query them with [[https://github.com/alphapapa/org-ql][org-ql]].
+* License
+#+INCLUDE: ./LICENSE
